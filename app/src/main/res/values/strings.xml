@@ -1,0 +1,15 @@
+<resources>
+    <string name="main_app_name">ChatBot</string>
+    <string name="item">Item</string>
+    <string name="new_conversation">New</string>
+    <string name="input_hint">input..</string>
+    <string name="network_connect_hint">Connection required</string>
+
+    <string name="dialog_confirm">Confirm</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="my_account">my account</string>
+    <string name="about">about</string>
+    <string name="avatar">avatar</string>
+    <string name="me">me</string>
+    <string name="account">account</string>
+</resources>

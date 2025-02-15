@@ -1,0 +1,121 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        applicationId rootProject.ext.android.applicationId
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    buildTypes {
+        debug{
+            Properties properties = new Properties()
+            properties.load(project.rootProject.file('local.properties').newDataInputStream())
+            def API_TOKEN = properties.getProperty('API_TOKEN')
+            def CHAT_BASE_URL = properties.getProperty('CHAT_BASE_URL')
+
+            buildConfigField "String", "API_TOKEN", "\"${API_TOKEN}\""
+            buildConfigField "String", "CHAT_BASE_URL", "\"${CHAT_BASE_URL}\""
+        }
+        release {
+            initWith(debug)
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion rootProject.ext.android.compose_version
+    }
+
+    applicationVariants.all { variant ->
+        //保存混淆映射文件
+        long time = new Date().getTime()
+        if (variant.getBuildType().isMinifyEnabled()) {
+            variant.assemble.doLast {
+                copy {
+                    from variant.mappingFile
+                    into "${projectDir}/mappings"
+                    rename { String fileName ->
+                        "mapping-${variant.name}_${variant.versionName}.txt"
+                    }
+                }
+            }
+        }
+        variant.outputs.all  {//-${time}
+            outputFileName  = "moregpt-${variant.name}-${variant.versionName}.apk"
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0"
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.github.obelieve.Frame:Frame:1.1.8'
+
+    implementation "androidx.compose.ui:ui:$rootProject.ext.android.compose_version"
+    // Tooling support (Previews, etc.)
+    implementation "androidx.compose.ui:ui-tooling:$rootProject.ext.android.compose_version"
+    // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
+    implementation "androidx.compose.foundation:foundation:$rootProject.ext.android.compose_version"
+    // Material Design
+    implementation "androidx.compose.material:material:$rootProject.ext.android.compose_version"
+    // Material design icons
+    implementation "androidx.compose.material:material-icons-core:$rootProject.ext.android.compose_version"
+    implementation "androidx.compose.material:material-icons-extended:$rootProject.ext.android.compose_version"
+    // Integration with activities
+    implementation "androidx.activity:activity-compose:1.3.0-alpha06"
+    // Integration with ViewModels
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
+    // Integration with observables
+    implementation "androidx.compose.runtime:runtime-livedata:$rootProject.ext.android.compose_version"
+    implementation "androidx.compose.runtime:runtime-rxjava2:$rootProject.ext.android.compose_version"
+
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
+    implementation "com.github.bumptech.glide:compose:1.0.0-alpha.1"
+
+    implementation 'androidx.compose.material3:material3:1.0.0-alpha11'
+    //status bar
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.28.0"
+    def room_version = "2.4.3"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation 'androidx.activity:activity-ktx:1.2.2'
+    //lottie
+    implementation "com.airbnb.android:lottie-compose:5.0.1"
+    //NavHost
+    def nav_version = "2.7.7"
+    implementation "androidx.navigation:navigation-compose:$nav_version"
+    //okhttp
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
+    //sse
+    implementation("com.squareup.okhttp3:okhttp-sse:4.11.0")
+}

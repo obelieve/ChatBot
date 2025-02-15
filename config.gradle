@@ -1,0 +1,12 @@
+ext {
+    android = [
+            applicationId: "com.github.obelieve.chat",
+            compileSdkVersion: 34,
+            buildToolsVersion: "33.0.2",
+            minSdkVersion    : 21,
+            targetSdkVersion : 32,
+            versionCode      : 1,
+            versionName      : '1.0.0',
+            compose_version  : '1.4.0'
+    ]
+}

@@ -1,0 +1,15 @@
+<resources>
+    <string name="main_app_name">ChatBot</string>
+    <string name="item">项</string>
+    <string name="new_conversation">新对话</string>
+    <string name="input_hint">输入您想问的..</string>
+    <string name="network_connect_hint">请连接网络</string>
+
+    <string name="dialog_confirm">确认</string>
+    <string name="dialog_cancel">取消</string>
+    <string name="my_account">我的账号</string>
+    <string name="about">关于</string>
+    <string name="avatar">头像</string>
+    <string name="me">我</string>
+    <string name="account">账号</string>
+</resources>
