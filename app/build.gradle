@@ -26,9 +26,11 @@ android {
             properties.load(project.rootProject.file('local.properties').newDataInputStream())
             def API_TOKEN = properties.getProperty('API_TOKEN')
             def CHAT_BASE_URL = properties.getProperty('CHAT_BASE_URL')
+            def MODEL = properties.getProperty('MODEL')
 
             buildConfigField "String", "API_TOKEN", "\"${API_TOKEN}\""
             buildConfigField "String", "CHAT_BASE_URL", "\"${CHAT_BASE_URL}\""
+            buildConfigField "String", "MODEL", "\"${MODEL}\""
         }
         release {
             initWith(debug)
