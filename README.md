@@ -6,6 +6,10 @@
 </p>
 
 ## Use
-`local.properties` API_TOKEN and CHAT_BASE_URL
-
+Add it in the `local.properties` file
+```properties
+API_TOKEN=sk-xxx
+CHAT_BASE_URL=xxx
+MODEL=xxx (deepseek-v3/gpt-4o or other)
+```
 ## Support LLM API
