@@ -55,7 +55,7 @@ fun HistoryScreen(startChatClick:(String?,Int)->Unit,
             IconButton(onClick = {
                 settingsClick.invoke()
             }) {
-                Icon(Icons.Rounded.Settings, tint = AppColor.White10, contentDescription = "more")
+                Icon(Icons.Rounded.Settings, tint = AppColor.IconColor, contentDescription = "more")
             }
         }
         Spacer(modifier = Modifier.padding(5.dp))

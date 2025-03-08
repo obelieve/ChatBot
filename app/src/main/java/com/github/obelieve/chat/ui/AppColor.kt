@@ -14,7 +14,12 @@ object AppColor{
 
     internal val Red500 = Color(0xFFEF5350)
 
-    internal val Main = Color(0xFF34D1B7)
+    internal val Green3341b7 = Color(0xFF34D1B7)
+    internal val Green316753 = Color(0xFF316753)
+    internal val Green223730 = Color(0xFF223730)
+
+    internal val Main = Green3341b7
+    internal val IconColor = White10
     internal val Text = White10
     internal val Text2 = Gray20
     internal val Background = Black10
@@ -23,6 +28,7 @@ object AppColor{
     internal val SendErrorBg = BlackB220
     internal val SendError = Red500
 
-    internal val StrokeSelectedCategory = Color(0xFF316753)
-    internal val SelectedCategory = Color(0xFF223730)
+    internal val StrokeSelectedCategory = Green316753
+    internal val SelectedCategory = Green223730
+
 }

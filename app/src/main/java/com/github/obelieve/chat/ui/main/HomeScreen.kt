@@ -116,7 +116,7 @@ fun MainNavBar(
             IconButton(onClick = {
                 openClick.invoke()
             }) {
-                Icon(Icons.Filled.Menu, tint = AppColor.White10, contentDescription = "Menu")
+                Icon(Icons.Filled.Menu, tint = AppColor.IconColor, contentDescription = "Menu")
             }
         },
         actions = {
@@ -124,7 +124,7 @@ fun MainNavBar(
                 IconButton(onClick = {
                     newSessionClick.invoke()
                 }) {
-                    Icon(Icons.Rounded.Add, tint = AppColor.White10, contentDescription = "more")
+                    Icon(Icons.Rounded.Add, tint = AppColor.IconColor, contentDescription = "more")
                 }
             }
         })

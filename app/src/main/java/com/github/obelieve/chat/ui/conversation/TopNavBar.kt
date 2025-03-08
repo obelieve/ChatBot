@@ -60,7 +60,7 @@ fun TopNavBar(modifier: Modifier, title:String,  moreClick: () -> Unit) {
            IconButton(onClick = {
                moreClick.invoke()
            }) {
-               Icon(Icons.Default.MoreVert, tint = AppColor.White10, contentDescription = "more")
+               Icon(Icons.Default.MoreVert, tint = AppColor.IconColor, contentDescription = "more")
            }
        }
     })
