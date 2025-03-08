@@ -1,5 +1,6 @@
 package com.github.obelieve.chat.ui.main
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -23,6 +24,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import com.github.obelieve.chat.R
@@ -116,7 +118,7 @@ fun MainNavBar(
             IconButton(onClick = {
                 openClick.invoke()
             }) {
-                Icon(Icons.Filled.Menu, tint = AppColor.IconColor, contentDescription = "Menu")
+                Image(painter = painterResource(id = R.drawable.ic_menu), contentDescription = "")
             }
         },
         actions = {
@@ -124,7 +126,7 @@ fun MainNavBar(
                 IconButton(onClick = {
                     newSessionClick.invoke()
                 }) {
-                    Icon(Icons.Rounded.Add, tint = AppColor.IconColor, contentDescription = "more")
+                    Image(painter = painterResource(id = R.drawable.ic_new_conversation), contentDescription = "")
                 }
             }
         })
