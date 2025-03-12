@@ -1,7 +1,6 @@
 package com.github.obelieve.chat.widget
 
 import androidx.compose.material3.LocalTextStyle
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -13,6 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
+import com.github.obelieve.chat.ui.conversation.ChatText
 import kotlinx.coroutines.delay
 
 /**
@@ -30,12 +30,12 @@ fun testTypewriterText() {
 fun TypewriterText(initialIndex:Int, content:String,modifier: Modifier = Modifier, speed:Long = 80,
                    color: Color = Color.Unspecified,fontSize:TextUnit = TextUnit.Unspecified,style: TextStyle = LocalTextStyle.current) {
     if(initialIndex<0||initialIndex>=content.length){
-        Text(text = content,modifier = modifier, color = color,style = style)
+        ChatText(text = content,modifier = modifier,color = color)
     }else{
         var index by remember { mutableStateOf(initialIndex) }
         val length = content.length
         val text = if(index<length) content.substring(0,index) else content
-        Text(text = text,modifier = modifier, color = color,fontSize = fontSize,style = style)
+        ChatText(text = text,modifier = modifier,color = color)
         LaunchedEffect(key1 = index) {
             delay(speed)
             if (index != length) {

@@ -77,8 +77,7 @@ fun SystemView(modifier: Modifier = Modifier.padding(start = 10.dp, end = 20.dp)
                 LoadingChat()
             }
             SelectionContainer{
-                Text(text = message.content, modifier = Modifier.padding(15.dp),color = Color.Red, maxLines = 3,overflow = TextOverflow.Ellipsis
-                    , style = AppTypography.bodyMedium)
+                ChatText(text = message.content,modifier = Modifier.padding(15.dp),color = Color.Red)
             }
         }
     }
@@ -98,8 +97,7 @@ fun LeftView(modifier: Modifier = Modifier.padding(start = 10.dp, end = 20.dp), 
                         containerColor = AppColor.SelectedCategory)
                 ) {
                     SelectionContainer {
-                        Text(text = message, modifier = Modifier.padding(15.dp), color = AppColor.Text
-                            , style = AppTypography.bodyMedium)
+                        ChatText(text = message,modifier = Modifier.padding(15.dp))
                     }
                 }
                 Row(modifier = Modifier.padding(start = 12.dp, top = 8.dp)) {
@@ -183,10 +181,9 @@ fun RightView(modifier: Modifier = Modifier.padding(start = 10.dp, end = 20.dp),
             ) {
                 SelectionContainer{
                     //字太长会被遮挡
-                    Text(text = message.content, modifier = Modifier
+                    ChatText(modifier = Modifier
                         .padding(15.dp)
-                        .widthIn(0.dp, 250.dp), color = AppColor.Text
-                        , style = AppTypography.bodyMedium)
+                        .widthIn(0.dp, 250.dp), text = message.content)
                 }
             }
             Spacer(modifier = Modifier.width(10.dp))
@@ -246,4 +243,10 @@ fun LoadingChat(){
             .size(50.dp)
             .padding(end = 0.dp)
     )
+}
+
+@Composable
+fun ChatText(modifier: Modifier,text:String,color:Color = AppColor.Text){
+    Text(text = text, modifier = modifier, color = AppColor.Text
+        , style = AppTypography.bodyMedium)
 }
